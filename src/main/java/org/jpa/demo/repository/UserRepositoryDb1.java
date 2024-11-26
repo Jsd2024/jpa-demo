@@ -23,10 +23,10 @@ public class UserRepositoryDb1 {
         return jdbcTemplate.queryForList(sql);
     }
 
-    public int saveUser(String name) {
-        String sql = "INSERT INTO users (name) VALUES (?)";
-        return jdbcTemplate.update(sql, name);
-    }
+//    public int saveUser(String name) {
+//        String sql = "INSERT INTO users (name) VALUES (?)";
+//        return jdbcTemplate.update(sql, name);
+//    }
 
     public int updateUser(Long id, String name) {
         String sql = "UPDATE users SET name = ? WHERE id = ?";

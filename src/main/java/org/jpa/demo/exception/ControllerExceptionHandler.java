@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.multipart.MultipartException;
 
-import jakarta.validation.ConstraintViolationException;
+//import jakarta.validation.ConstraintViolationException;
 import java.io.IOException;
 import java.util.Date;
 
@@ -71,13 +71,13 @@ public class ControllerExceptionHandler {
      * @return the response entity
      * @throws IOException the io exception
      */
-    @ExceptionHandler(ConstraintViolationException.class)
-    public ResponseEntity<ErrorMessage> handleConstraintViolationException(ConstraintViolationException e) throws IOException {
-        ErrorMessage message = new ErrorMessage(HttpStatus.BAD_REQUEST, HttpStatus.BAD_REQUEST.value(),
-            new Date(), e.getMessage(), "Please select a XML file");
-
-        log.error("ControllerExceptionHandler::handleConstraintViolationException Generic Exception Thrown - " + e.getMessage(), e);
-
-        return new ResponseEntity<ErrorMessage>(message, HttpStatus.BAD_REQUEST);
-    }
+//    @ExceptionHandler(ConstraintViolationException.class)
+//    public ResponseEntity<ErrorMessage> handleConstraintViolationException(ConstraintViolationException e) throws IOException {
+//        ErrorMessage message = new ErrorMessage(HttpStatus.BAD_REQUEST, HttpStatus.BAD_REQUEST.value(),
+//            new Date(), e.getMessage(), "Please select a XML file");
+//
+//        log.error("ControllerExceptionHandler::handleConstraintViolationException Generic Exception Thrown - " + e.getMessage(), e);
+//
+//        return new ResponseEntity<ErrorMessage>(message, HttpStatus.BAD_REQUEST);
+//    }
 }

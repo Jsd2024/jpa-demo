@@ -1,5 +1,8 @@
 package org.jpa.demo.config;
 
+import jakarta.annotation.PostConstruct;
+import org.jpa.demo.domain.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
@@ -10,9 +13,14 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 import javax.sql.DataSource;
+import java.util.Arrays;
+import java.util.List;
 
 @Configuration
 public class DataSourceConfig {
+
+
+
 
     // DataSource for Database 1 (db1)
     @Bean(name = "dataSource1")
@@ -22,11 +30,11 @@ public class DataSourceConfig {
     }
 
     // DataSource for Database 2 (db2)
-    @Bean(name = "dataSource2")
-    @ConfigurationProperties(prefix = "spring.datasource.db2")
-    public DataSource dataSource2() {
-        return DataSourceBuilder.create().build();
-    }
+//    @Bean(name = "dataSource2")
+//    @ConfigurationProperties(prefix = "spring.datasource.db2")
+//    public DataSource dataSource2() {
+//        return DataSourceBuilder.create().build();
+//    }
 
     // JdbcTemplate for Database 1 (db1)
     @Bean(name = "jdbcTemplate1")
@@ -35,10 +43,10 @@ public class DataSourceConfig {
     }
 
     // JdbcTemplate for Database 2 (db2)
-    @Bean(name = "jdbcTemplate2")
-    public JdbcTemplate jdbcTemplate2(@Qualifier("dataSource2") DataSource dataSource) {
-        return new JdbcTemplate(dataSource);
-    }
+//    @Bean(name = "jdbcTemplate2")
+//    public JdbcTemplate jdbcTemplate2(@Qualifier("dataSource2") DataSource dataSource) {
+//        return new JdbcTemplate(dataSource);
+//    }
 }
 
 
