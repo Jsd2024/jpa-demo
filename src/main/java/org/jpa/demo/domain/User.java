@@ -4,8 +4,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+@AllArgsConstructor
 
 @Entity
 @Table(name="Users")
@@ -15,7 +17,7 @@ public class User {
     @Id
     private int id;
     private String name;
-    private String add;
+    private String address;
     private int age;
 
 }

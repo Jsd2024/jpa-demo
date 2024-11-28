@@ -1,41 +1,53 @@
 package org.jpa.demo.service;
 
-import org.jpa.demo.repository.UserRepositoryDb1;
-//import org.jpa.demo.repository.UserRepositoryDb2;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Service;
+import jakarta.persistence.EntityManagerFactory;
+import org.jpa.demo.domain.Employee;
+import org.jpa.demo.domain.User;
+import org.jpa.demo.repository.RepositoryDb1;
+import org.jpa.demo.repository.RepositoryDb2;
+import org.springframework.beans.factory.annotation.*;
 
 import java.util.List;
 import java.util.Map;
-@Service
-public class UserService {
+@org.springframework.stereotype.Service
+public class Service {
 
-    private final UserRepositoryDb1 userRepositoryDb1;
-//    private final UserRepositoryDb2 userRepositoryDb2;
+    private final RepositoryDb1 repositoryDb1;
+    private final RepositoryDb2 repositoryDb2;
+
+    private final EntityManagerFactory entityManagerFactory;
+    private final EntityManagerFactory entityDb2ManagerFactory;
 
     @Autowired
-    public UserService(UserRepositoryDb1 userRepositoryDb1
-            /*, UserRepositoryDb2 userRepositoryDb2*/) {
-        this.userRepositoryDb1 = userRepositoryDb1;
-//        this.userRepositoryDb2 = userRepositoryDb2;
+    public Service(RepositoryDb1 repositoryDb1
+            , RepositoryDb2 repositoryDb2, EntityManagerFactory entityManagerFactory, EntityManagerFactory entityDb2ManagerFactory) {
+        this.repositoryDb1 = repositoryDb1;
+        this.repositoryDb2 = repositoryDb2;
+        this.entityManagerFactory = entityManagerFactory;
+        this.entityDb2ManagerFactory = entityDb2ManagerFactory;
     }
+
+
+
 
     public List<Map<String, Object>> getUsersFromDb1() {
-        return userRepositoryDb1.getAllUsers();
+        return repositoryDb1.getAllUsers();
     }
 
-//    public List<Map<String, Object>> getUsersFromDb2() {
-//        return userRepositoryDb2.getAllUsers();
-//    }
+    public List<User> getUsersListFromDb1() {
+        return repositoryDb1.getAllUsersList();
+    }
+
+    public List<Employee> getEmpsFromDb2() {
+        return repositoryDb2.getAllEmpList();
+    }
 
 //    public int saveUserToDb1(String name) {
 //        return userRepositoryDb1.saveUser(name);
 //    }
 
 //    public int saveUserToDb2(String name) {
-//        return userRepositoryDb2.saveUser(name);
+//        return repositoryDb2.saveUser(name);
 //    }
 
 //    public int updateUserInDb1(Long id, String name) {
@@ -43,7 +55,7 @@ public class UserService {
 //    }
 
 //    public int updateUserInDb2(Long id, String name) {
-//        return userRepositoryDb2.updateUser(id, name);
+//        return repositoryDb2.updateUser(id, name);
 //    }
 
 //    public int deleteUserFromDb1(Long id) {
@@ -51,7 +63,7 @@ public class UserService {
 //    }
 
 //    public int deleteUserFromDb2(Long id) {
-//        return userRepositoryDb2.deleteUser(id);
+//        return repositoryDb2.deleteUser(id);
 //    }
 }
 
